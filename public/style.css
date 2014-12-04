@@ -1,0 +1,81 @@
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+span {
+	position: relative;
+	top: 85%;
+	left: 5%;      
+}
+
+.set {
+	margin-top: 60px;
+}
+
+.stack{
+	height: 300px;
+}
+
+.card {
+	cursor: pointer;
+	border-radius: 15px;
+	margin-left: 15%;
+	font-size: 1.5em;
+	height: 200px;
+	width: 300px;
+	border: solid 1px black;
+	position: absolute;
+	background-color: white;
+	box-shadow: 2px 3px 4px #888888;
+}
+
+.top {
+	z-index: 3;
+}
+
+.middle {
+	z-index: 2;
+	top: 30px;
+}
+
+.bottom {
+	z-index: 1;
+	top: 60px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+	.set {
+		margin-top: 120px;
+	}
+
+	.stack{
+		height: 600px;
+	}
+
+	.card {
+		border-radius: 30px;
+		font-size: 3em;
+		height: 400px;
+		width: 600px;
+		border: solid 2px black;
+	}
+
+	.middle {
+		top: 30px;
+	}
+
+	.bottom {
+		top: 60px;
+	}
+
+}
+

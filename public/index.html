@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="deckViewer">
+	<head>
+		<title>interface foundry</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+    	<script type="text/javascript" src="angular.min.js"></script>
+    	<script type="text/javascript" src="app.js"></script>
+	</head>
+	<body>
+		<div ng-controller="DeckController as deck" class="container-fluid">
+			<div ng-repeat="set in deck.sets" class="stack col-xs-12 col-sm-12 col-md-6 col-lg-4">
+				<div ng-controller="SetController as setCtrl">
+					<div ng-repeat="card in set" ng-class="{top: $index === setCtrl.topIndex, middle: $index === setCtrl.middleIndex, bottom: $index === setCtrl.bottomIndex}" ng-click="setCtrl.handleClick($index)" class="card noselect">
+						<span>{{card}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
