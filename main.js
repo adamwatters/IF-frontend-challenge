@@ -4,7 +4,7 @@ var fs = require("fs");
 
 app.use('/', express.static(__dirname + '/public'));
 
-app.get("/data", function(request, response){
+app.get("/bubbles.json", function(request, response){
   var jsonFile = fs.readFileSync('sample_bubbles.json');
   response.send(jsonFile);
 });

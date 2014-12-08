@@ -5,15 +5,15 @@
 		<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="styles/style.css" />
 		<script src="scripts/jquery.js"></script>
-    	<script type="text/javascript" src="scripts/angular.min.js"></script>
-    	<script type="text/javascript" src="angular-modal-service.js"></script>  
-    	<script type="text/javascript" src="scripts/app.js"></script>
+    	<script src="scripts/angular.min.js"></script>  
+    	<script src="scripts/app.js"></script>
 	</head>
 	<body>
 		<div ng-controller="DeckController as deck" class="container-fluid">
+			<!-- ********************* MODAL ************************ -->
 			<div ng-show="deck.showModal" class="custom-modal">
-				<div ng-click="deck.modalClick()" class="modal-background noselect"></div>
-        		<div ng-click="deck.modalClick()" class="card modal-overlay noselect">
+				<div ng-click="deck.closeModal()" class="modal-background noselect"></div>
+        		<div ng-click="deck.closeModal()" class="card modal-overlay noselect">
         			<div ng-switch on="deck.modalCard.subType">
 						<img class="shape" ng-switch-when="Lecture" src="/shapes/triangle.png"/>
 						<img class="shape" ng-switch-when="Show" src="/shapes/circle.png"/>
@@ -26,8 +26,11 @@
 					</div>
         		</div>
     		</div>
+    		<!-- ********************* DECK ************************ -->
 			<div ng-repeat="set in deck.sets" class="stack col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div ng-controller="SetController as setCtrl">
+					<!-- ********************* SETS ************************ -->
+					<!-- TODO: Move all of this application logic out of HTML -->
 					<div class="card" ng-repeat="card in set" ng-class="{top: $index === setCtrl.topIndex, middle: $index === setCtrl.middleIndex, bottom: $index === setCtrl.bottomIndex, middle: $index === setCtrl.middleIndex}" ng-click="deck.handleClick(setCtrl.topIndex,$index, $parent.$index); setCtrl.handleClick($index)" class="card noselect">
 							<div ng-if="$index === setCtrl.topIndex" ng-switch on="card.subType">
 								<img class="shape" ng-switch-when="Lecture" src="/shapes/triangle.png"/>
