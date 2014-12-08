@@ -1,6 +1,8 @@
 ## Interface Foundry Frontend Challenge
 
-node main.js to start
+node main.js to start server
+
+frontend javascript in public/scripts/app.js
 
 * Angular
 * Bootstrap for responsive layout
