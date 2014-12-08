@@ -100,6 +100,7 @@ h3 {
 }
 
 .modal-overlay {
+	font-size: 2em;
 	position: relative;
 	left: -67%;
 	top: 30%;
@@ -112,10 +113,6 @@ h3 {
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
-
-	p {
-		font-size: 1.5em;
-	}
 
 	.stack{
 		margin-top: 100px; 
@@ -140,6 +137,7 @@ and (max-device-width : 480px) {
 	}
 
 	.modal-overlay {
+		font-size: 4em;
 		height: 600px;
 		width: 900px;
 	}

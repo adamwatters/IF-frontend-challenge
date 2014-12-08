@@ -8,9 +8,6 @@
 		url: "/data",
 		success: function(cards) {
 			cardArray = cards.data;
-		},
-		error: function() {
-			console.log("error on card data request");
 		}
 	});
 
@@ -24,8 +21,6 @@
 		return previousValue
 	}, [])
 
-	console.log(groupedData);
-
 	var app = angular.module('deckViewer',[]);
 
 	app.factory('Data', function(){
@@ -34,15 +29,22 @@
 
 	app.controller('DeckController', function(Data){
 		this.sets = Data.set;
-	});
+		this.modalCard;
+		this.showModal = false;
 
-	app.controller('ModalController', function(Data){
-
-		this.test = function() {
-			console.log(Data.state, Data.setIndex, Data.cardIndex);
+		this.modalClick = function(){
+			this.showModal = false;
 		}
 
-	})
+		this.handleClick = function(topIndex, index, parentIndex){
+			if(topIndex === index) {
+				this.modalCard = this.sets[parentIndex][index]
+				this.showModal = true;
+			}	
+		};
+
+
+	});
 
 	app.controller('SetController', function(Data){
 
@@ -54,10 +56,8 @@
 			this.saveIndex = index;
 		},
 
-		this.handleClick = function(index, parentIndex){
-			if(this.topIndex === index) {
-				this.callModel(index, parentIndex);
-			} else {
+		this.handleClick = function(index){
+			if(this.topIndex !== index) {
 				this.makeTop(index);
 			}
 		};
@@ -65,7 +65,6 @@
 		this.callModel = function(index, parentIndex){
 			Data.cardIndex = index;
 			Data.setIndex = parentIndex;
-			console.log('call model');
 			Data.state = true;
 		};
 
