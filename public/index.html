@@ -2,17 +2,44 @@
 <html ng-app="deckViewer">
 	<head>
 		<title>interface foundry</title>
-		<link rel="stylesheet" type="text/css" href="bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="style.css" />
-    	<script type="text/javascript" src="angular.min.js"></script>
-    	<script type="text/javascript" src="app.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="styles/style.css" />
+		<script src="scripts/jquery.js"></script>
+    	<script type="text/javascript" src="scripts/angular.min.js"></script>
+    	<script type="text/javascript" src="angular-modal-service.js"></script>  
+    	<script type="text/javascript" src="scripts/app.js"></script>
 	</head>
 	<body>
 		<div ng-controller="DeckController as deck" class="container-fluid">
-			<div ng-repeat="set in deck.sets" class="stack col-xs-12 col-sm-12 col-md-6 col-lg-4">
+			<div ng-show="true" class="custom-modal">
+				<div class="modal-background noselect"></div>
+        		<div ng-click="modalCtrl.test()" class="card modal-overlay noselect">
+        			<div ng-switch on="modalCtrl.modalCard.subType">
+						<img class="shape" ng-switch-when="Lecture" src="/shapes/triangle.png"/>
+						<img class="shape" ng-switch-when="Show" src="/shapes/circle.png"/>
+						<img class="shape" ng-switch-when="Award Nominee" src="/shapes/square.png"/>
+						<div class="card-content">
+							<h1>Name</h1>
+							<h2>SUBTYPE</h2>
+							<h3>SHORT DESCRIPTION</h3>
+						</div>
+					</div>
+        		</div>
+    		</div>
+			<div ng-repeat="set in deck.sets" class="stack col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div ng-controller="SetController as setCtrl">
-					<div ng-repeat="card in set" ng-class="{top: $index === setCtrl.topIndex, middle: $index === setCtrl.middleIndex, bottom: $index === setCtrl.bottomIndex}" ng-click="setCtrl.handleClick($index)" class="card noselect">
-						<span>{{card}}</span>
+					<div class="card" ng-repeat="card in set" ng-class="{top: $index === setCtrl.topIndex, middle: $index === setCtrl.middleIndex, bottom: $index === setCtrl.bottomIndex, middle: $index === setCtrl.middleIndex}" ng-click="setCtrl.handleClick($index, $parent.$index)" class="card noselect">
+							<div ng-if="$index === setCtrl.topIndex" ng-switch on="card.subType">
+								<img class="shape" ng-switch-when="Lecture" src="/shapes/triangle.png"/>
+								<img class="shape" ng-switch-when="Show" src="/shapes/circle.png"/>
+								<img class="shape" ng-switch-when="Award Nominee" src="/shapes/square.png"/>
+								<div class="card-content">
+									<h1>{{card.name}}</h1>
+									<h2>{{card.subType}}</h2>
+									<h3>{{card.shortDescription}}</h3>
+								</div>
+							</div>
+						<span ng-if="$index !== setCtrl.topIndex" class="bottom-name"><h3>{{card.name}}</h3></span>
 					</div>
 				</div>
 			</div>
