@@ -7,8 +7,12 @@ Express for serving /public folder and data_bubbles.json
 
 node main.js to start
 
-TODO: 1) move application logic out of DOM - Angular Directives?
-	  2) move Modal management out of DeckController (--> ModalController?)
+TODO: 
+* move application logic out of DOM - Angular Directives?
+* move modal management out of DeckController (--> ModalController?)
+* Angular services for data sharing between Controllers? 
+* $http service to get JSON
+ 
 
 
 
